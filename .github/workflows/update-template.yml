@@ -50,6 +50,7 @@ jobs:
     - name: Add types to package.json
       uses: jaywcjlove/github-action-package@main
       with:
+        path: ./template/package.json
         data: |
           {
             "devDependencies": {
