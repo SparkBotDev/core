@@ -1,0 +1,11 @@
+{
+	"prettier": true,
+	"rules": {
+		"unicorn/catch-error-name": [
+			"error",
+			{
+				"name": "exception"
+			}
+		]
+	}
+}
