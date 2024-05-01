@@ -21,6 +21,8 @@
     ]
   },
   "dependencies": {
+    "@sparkbot/logger-console": "link:@sparkbot/logger-console",
+    "@sparkbot/logger-plugin-interface": "link:@sparkbot/logger-plugin-interface",
     "@sparkbot/secrets-environment": "link:@sparkbot/secrets-environment",
     "@sparkbot/secrets-plugin-interface": "link:@sparkbot/secrets-plugin-interface",
     "discord.js": "^14.14.1",
