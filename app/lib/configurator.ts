@@ -98,9 +98,9 @@ async function swapSecrets(
 
 const validatedConfig = v.parse(configSchema, config);
 
-const importedObjects = await importObjects<typeof SecretsPlugin>(
-	validatedConfig.plugins.secretsVault.name,
-);
+const importedObjects = await importObjects<
+	new (options: unknown) => SecretsPlugin
+>(validatedConfig.plugins.secretsVault.name);
 
 const secretsPlugin = importedObjects[0];
 
