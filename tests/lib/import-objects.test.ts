@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import { importObjects } from '../../app/lib/import-objects.js';
 
-describe('importObjects() library', () => {
+describe('lib/importObjects() library', () => {
 	it('imports a single file', async () => {
 		const testImport = await importObjects('/objects/single.ts');
 		expect(testImport).toBeArrayOfSize(1);
