@@ -1,5 +1,6 @@
 import process from 'node:process';
-import { Client, Collection, Events } from 'discord.js';
+import { join } from 'node:path';
+import { Client, Collection } from 'discord.js';
 import type { LoggerPlugin } from '@sparkbot/logger-plugin-interface';
 import { config } from './lib/configurator.js';
 import { importObjects } from './lib/import-objects.js';
@@ -19,6 +20,12 @@ declare module 'discord.js' {
 	}
 }
 
+declare global {
+	type Router = {
+		execute(client: Client): void;
+	};
+}
+
 /*
  * Initialize client
  */
@@ -31,11 +38,11 @@ discordClient.coolDowns = new Collection();
 /*
  * Initialize and configure logger
  */
-const importedObjects = await importObjects<
+const importedLoggerObjects = await importObjects<
 	new (options: unknown) => LoggerPlugin
 >(discordClient.config.plugins.loggingLib.name);
 
-const loggerPlugin = importedObjects[0];
+const loggerPlugin = importedLoggerObjects[0];
 
 if (loggerPlugin) {
 	// eslint-disable-next-line new-cap
@@ -43,16 +50,6 @@ if (loggerPlugin) {
 		discordClient.config.plugins.loggingLib.options,
 	);
 }
-
-discordClient.on(Events.Debug, (message) => {
-	discordClient.logger.debug(message);
-});
-discordClient.on(Events.Warn, (message) => {
-	discordClient.logger.warn(message);
-});
-discordClient.on(Events.Error, (message) => {
-	discordClient.logger.error(message);
-});
 
 process.on('uncaughtException', (error) => {
 	discordClient.logger.error(
@@ -66,3 +63,17 @@ process.on('unhandledRejection', (error) => {
 	);
 	process.exit(1);
 });
+console.log('start routers');
+/*
+ * Process routers
+ */
+const routers = await importObjects<Router>(join(import.meta.dir, '/routers'));
+
+for (const router of routers) {
+	router.execute(discordClient);
+}
+
+/*
+ * Loggin to Discord
+ */
+await discordClient.login(config.discordAPIKey);
