@@ -5,11 +5,6 @@ import type { LoggerPlugin } from '@sparkbot/logger-plugin-interface';
 import { config } from './lib/configurator.js';
 import { importObjects } from './lib/import-objects.js';
 
-// Temp util get to command stuff
-type Command = {
-	name: string;
-};
-
 declare module 'discord.js' {
 	// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 	interface Client {
@@ -63,7 +58,7 @@ process.on('unhandledRejection', (error) => {
 	);
 	process.exit(1);
 });
-console.log('start routers');
+
 /*
  * Process routers
  */

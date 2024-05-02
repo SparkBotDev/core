@@ -10,7 +10,7 @@ declare global {
 	};
 }
 
-export const gatewayEventRouter = {
+export const gatewayEventRouter: Router = {
 	async execute(client: Client) {
 		const eventHandlers = await importObjects<GatewayEventHandler>(
 			join(import.meta.dir, '../bot-components/gateway-events'),
