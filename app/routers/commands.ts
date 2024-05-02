@@ -42,7 +42,7 @@ export const commandRouter: Router = {
 				body: commandsToRegister.map((command) => command.toJSON()),
 			})
 			.then((data: any) => {
-				client.logger.info(`🟡 Registered ${data.length} slash command(s)`);
+				client.logger.info(`🔵 Registered ${data.length} slash command(s)`);
 			})
 			.catch((exception) => {
 				if (exception instanceof Error) {
