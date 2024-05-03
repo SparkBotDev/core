@@ -4,7 +4,8 @@ import {
 	type ChatInputCommandInteraction,
 } from 'discord.js';
 
-const command: Command = {
+export const ping: Command = {
+	name: 'ping',
 	command: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('Simple ping command'),
@@ -19,5 +20,3 @@ const command: Command = {
 	},
 	coolDownSeconds: 10,
 };
-
-export default command;

@@ -6,16 +6,15 @@ import {
 	type SlashCommandBuilder,
 	type AutocompleteInteraction,
 	type ChatInputCommandInteraction,
-	type ModalSubmitInteraction,
 } from 'discord.js';
 import { importObjects } from '../lib/import-objects.js';
 
 declare global {
 	type Command = {
+		name: string;
 		command: SlashCommandBuilder;
 		execute: (interaction: ChatInputCommandInteraction) => void;
 		autocomplete?: (interaction: AutocompleteInteraction) => void;
-		modal?: (interaction: ModalSubmitInteraction) => void;
 		coolDownSeconds?: number;
 		serverID?: number;
 	};

@@ -12,6 +12,7 @@ declare module 'discord.js' {
 		logger: LoggerPlugin;
 		commands: Collection<string, Command>;
 		coolDowns: Collection<string, number>;
+		components: Collection<string, MessageComponentSpark>;
 	}
 }
 
@@ -29,6 +30,7 @@ discordClient.config = config;
 
 discordClient.commands = new Collection();
 discordClient.coolDowns = new Collection();
+discordClient.components = new Collection();
 
 /*
  * Initialize and configure logger

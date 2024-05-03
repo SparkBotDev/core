@@ -4,40 +4,16 @@ export const interactionCreateHandler: GatewayEventHandler = {
 	type: Events.InteractionCreate,
 	once: false,
 	async execute(client: Client, interaction: Interaction) {
+		let command: Command | MessageComponentSpark | undefined;
+
 		if (interaction.isChatInputCommand()) {
-			const command = interaction.client.commands.get(interaction.commandName);
-			const coolDown = interaction.client.coolDowns.get(
-				`${interaction.commandName}-${interaction.user.username}`,
-			);
-			if (!command) return;
-			if (command.coolDownSeconds && coolDown) {
-				if (Date.now() < coolDown) {
-					await interaction.reply(
-						`You have to wait ${Math.floor(
-							Math.abs(Date.now() - coolDown) / 1000,
-						)} second(s) to use this command again.`,
-					);
-					setTimeout(async () => interaction.deleteReply(), 5000);
-					return;
-				}
-
-				interaction.client.coolDowns.set(
-					`${interaction.commandName}-${interaction.user.username}`,
-					Date.now() + command.coolDownSeconds * 1000,
+			command = interaction.client.commands.get(interaction.commandName);
+			if (!command) {
+				client.logger.warn(
+					`No command matching ${interaction.commandName} was found.`,
 				);
-				setTimeout(() => {
-					interaction.client.coolDowns.delete(
-						`${interaction.commandName}-${interaction.user.username}`,
-					);
-				}, command.coolDownSeconds * 1000);
-			} else if (command.coolDownSeconds && !coolDown) {
-				interaction.client.coolDowns.set(
-					`${interaction.commandName}-${interaction.user.username}`,
-					Date.now() + command.coolDownSeconds * 1000,
-				);
+				return;
 			}
-
-			command.execute(interaction);
 		} else if (interaction.isAutocomplete()) {
 			const command = interaction.client.commands.get(interaction.commandName);
 			if (!command) {
@@ -53,21 +29,49 @@ export const interactionCreateHandler: GatewayEventHandler = {
 			} catch (exception) {
 				client.logger.warn(String(exception));
 			}
-		} else if (interaction.isModalSubmit()) {
-			const command = interaction.client.commands.get(interaction.customId);
-			if (!command) {
-				client.logger.warn(
-					`No command matching ${interaction.customId} was found.`,
+
+			return;
+		} else if (
+			interaction.isModalSubmit() ||
+			interaction.isButton() ||
+			interaction.isStringSelectMenu()
+		) {
+			command = interaction.client.components.get(interaction.customId);
+		}
+
+		if (command) {
+			const coolDown = interaction.client.coolDowns.get(
+				`${command.name}-${interaction.user.username}`,
+			);
+			if (command.coolDownSeconds && coolDown) {
+				if (Date.now() < coolDown) {
+					await interaction.reply(
+						`You have to wait ${Math.floor(
+							Math.abs(Date.now() - coolDown) / 1000,
+						)} second(s) to use this command again.`,
+					);
+					setTimeout(async () => interaction.deleteReply(), 5000);
+					return;
+				}
+
+				interaction.client.coolDowns.set(
+					`${command.name}-${interaction.user.username}`,
+					Date.now() + command.coolDownSeconds * 1000,
 				);
-				return;
+				setTimeout(() => {
+					interaction.client.coolDowns.delete(
+						`${command.name}-${interaction.user.username}`,
+					);
+				}, command.coolDownSeconds * 1000);
+			} else if (command.coolDownSeconds && !coolDown) {
+				interaction.client.coolDowns.set(
+					`${command.name}-${interaction.user.username}`,
+					Date.now() + command.coolDownSeconds * 1000,
+				);
 			}
 
-			try {
-				if (!command.modal) return;
-				command.modal(interaction);
-			} catch (exception) {
-				client.logger.warn(String(exception));
-			}
+			// @ts-expect-error I know I am typing something wrong, but I  also know this is ok
+			command.execute(interaction);
 		}
 	},
 };
