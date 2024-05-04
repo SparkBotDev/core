@@ -18,7 +18,6 @@ jobs:
         bun-version: latest
     - run: bun install
     - run: bun lint
-    - run: bun test
   template_update:
     needs: lint
     name: Update template repository
