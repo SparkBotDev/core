@@ -12,12 +12,8 @@ const string_ = v.transform(
 	v.union([
 		v.string(),
 		v.object({
-			prod: v.object({
-				key: v.string(),
-			}),
-			dev: v.object({
-				key: v.string(),
-			}),
+			prod: v.string(),
+			dev: v.string(),
 		}),
 	]),
 	(input) => {
@@ -26,10 +22,10 @@ const string_ = v.transform(
 		}
 
 		if (Bun.env.NODE_ENV === 'production') {
-			return input.prod.key;
+			return input.prod;
 		}
 
-		return input.dev.key;
+		return input.dev;
 	},
 );
 
@@ -72,6 +68,7 @@ const configSchema = v.object(
 			secretsVault: plugin_,
 			loggingLib: plugin_,
 		}),
+		channelMap: v.optional(v.record(string_)),
 	},
 	v.unknown(),
 );
