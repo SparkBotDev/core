@@ -63,7 +63,7 @@ const configSchema = v.object(
 	{
 		discordAPIKey: string_,
 		discordAppID: string_,
-		discordIntents: v.enum_(GatewayIntentBits),
+		discordIntents: v.array(v.enum_(GatewayIntentBits)),
 		plugins: v.object({
 			secretsVault: plugin_,
 			loggingLib: plugin_,

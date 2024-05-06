@@ -4,7 +4,7 @@ import { LoggerLevel } from '@sparkbot/logger-plugin-interface';
 export const config: SparkBotConfig = {
 	discordAPIKey: '*secret*',
 	discordAppID: '*secret*',
-	discordIntents: GatewayIntentBits.Guilds,
+	discordIntents: [GatewayIntentBits.Guilds],
 	plugins: {
 		secretsVault: {
 			name: '@sparkbot/secrets-environment',
