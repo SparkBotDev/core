@@ -9,7 +9,7 @@
     "lint": "prettier . --check; xo; markdownlint-cli2 .; tsc --noEmit --skipLibCheck",
     "commit": "lint-staged",
     "prepare": "husky",
-    "testcov": "typescript-coverage-report"
+    "coverage": "typescript-coverage-report"
   },
   "lint-staged": {
     "*.ts": [
