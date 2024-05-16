@@ -1,22 +1,37 @@
+import { extname } from 'node:path';
 import { mock } from 'bun:test';
 
-// Creates a mocked file system for import-objects testing
+// Creates a mocked file system for sparkLoad() testing
 
 await mock.module('node:fs', () => {
 	return {
 		readdirSync() {
 			return [
 				'single.ts',
-				'multi.ts',
-				'ignoreme.js',
-				'lib/ignoreme.ts',
+				'multiple.ts',
+				'invalid.js',
+				'lib/library.ts',
 				'sub/sub.ts',
 			];
 		},
 		statSync(path: string) {
-			if (path === '/objects') {
+			if (path === '/stub') {
 				return {
 					isDirectory() {
+						return true;
+					},
+					isFile() {
+						return false;
+					},
+				};
+			}
+
+			if (extname(path) !== '') {
+				return {
+					isDirectory() {
+						return false;
+					},
+					isFile() {
 						return true;
 					},
 				};
@@ -24,6 +39,9 @@ await mock.module('node:fs', () => {
 
 			return {
 				isDirectory() {
+					return false;
+				},
+				isFile() {
 					return false;
 				},
 			};
@@ -34,11 +52,11 @@ await mock.module('node:fs', () => {
 const validObject = { name: 'valid' };
 const invalidObject = { data: 'invalid' };
 
-await mock.module('/objects/single.ts', () => {
+await mock.module('/stub/single.ts', () => {
 	return { object1: validObject };
 });
 
-await mock.module('/objects/multi.ts', () => {
+await mock.module('/stub/multiple.ts', () => {
 	return {
 		object1: validObject,
 		object2: validObject,
@@ -47,14 +65,14 @@ await mock.module('/objects/multi.ts', () => {
 	};
 });
 
-await mock.module('/objects/ignoreme.js', () => {
+await mock.module('/stub/invalid.js', () => {
 	return { object1: validObject };
 });
 
-await mock.module('/objects/lib/ignoreme.ts', () => {
+await mock.module('/stub/lib/library.ts', () => {
 	return { object1: validObject };
 });
 
-await mock.module('/objects/sub/sub.ts', () => {
+await mock.module('/stub/sub/sub.ts', () => {
 	return { object1: validObject };
 });
