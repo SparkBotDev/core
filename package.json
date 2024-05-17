@@ -22,10 +22,10 @@
     ]
   },
   "dependencies": {
-    "@sparkbot/logger-console": "^0.2.0",
-    "@sparkbot/logger-plugin-interface": "^0.2.0",
-    "@sparkbot/secrets-environment": "^0.2.0",
-    "@sparkbot/secrets-plugin-interface": "^0.2.0",
+    "@sparkbot/logger-console": "^0.3.0",
+    "@sparkbot/logger-plugin-interface": "^0.3.0",
+    "@sparkbot/secrets-environment": "^0.3.0",
+    "@sparkbot/secrets-plugin-interface": "^0.3.0",
     "cron": "^3.1.7",
     "discord.js": "^14.15.2",
     "luxon": "^3.4.4",
