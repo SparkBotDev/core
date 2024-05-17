@@ -36,8 +36,16 @@ jobs:
           path: ./template
       - name: Copy files to template
         run: |
-          rm -rf ./template/app
-          cp -rf ./source/app ./template/app
+          rm -rf ./template/components
+          rm -rf ./template/lib
+          rm -rf ./template/loaders
+          rm -rf ./template/types
+          cp -rf ./source/components ./template/components
+          cp -rf ./source/lib ./template/lib
+          cp -rf ./source/loaders ./template/loaders
+          cp -rf ./source/types ./template/types
+          cp -f ./source/index.ts ./template/index.ts
+          cp -f ./source/sparkbot.config.ts ./template/sparkbot.config.ts
           cp -f ./source/package.json ./template/package.json
           cp -f ./source/README.md ./template/README.md
           cp -f ./source/LICENSE ./template/LICENSE
