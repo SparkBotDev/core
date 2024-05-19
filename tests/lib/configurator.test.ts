@@ -14,7 +14,7 @@ describe('lib/configurator.ts', () => {
 	it('transforms prod/dev into flat keys', () => {
 		expect(config.discordAppId).toEqual('dev');
 		expect(config.loggingLib.name).toEqual('dev');
-		expect(config.channelMap!['channel2']).toEqual(123123);
+		expect(config.channelMap!['channel2']).toEqual('123123');
 	});
 
 	it('replaces SECRETs', () => {

@@ -22,8 +22,8 @@ await mock.module(join(import.meta.dir, '../../sparkbot.config.ts'), () => {
 				dev: { name: 'dev', options: { testSecret: SECRET } },
 			},
 			channelMap: {
-				channel1: 1232124512312,
-				channel2: { prod: 123123, dev: 123123 },
+				channel1: '1232124512312',
+				channel2: { prod: '123123', dev: '123123' },
 			},
 			extraProp: 'extra',
 		},
