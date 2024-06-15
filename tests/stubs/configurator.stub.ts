@@ -13,7 +13,9 @@ await mock.module(join(import.meta.dir, '../../sparkbot.config.ts'), () => {
 				prod: 'prod',
 				dev: 'dev',
 			},
-			discordIntents: [1],
+			intents: [1],
+			partials: [],
+			dbEnabled: false,
 			secretsVault: {
 				name: '@sparkbot/secrets-environment',
 			},
