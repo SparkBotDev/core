@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 import { Database } from 'bun:sqlite';
-import { Client, Collection, Partials } from 'discord.js';
+import { Client, Collection } from 'discord.js';
 import { drizzle } from 'drizzle-orm/bun-sqlite';
 import { migrate } from 'drizzle-orm/bun-sqlite/migrator';
 import { config } from './lib/configurator.ts';
