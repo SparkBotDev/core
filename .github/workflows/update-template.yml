@@ -60,7 +60,7 @@ jobs:
           data: |
             {
               "devDependencies": {
-                 "@types/bun": "latest",
+                 "@types/bun": "latest"
               }
             }
       - name: Push template
