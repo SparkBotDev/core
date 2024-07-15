@@ -36,13 +36,10 @@ jobs:
           path: ./template
       - name: Copy files to template
         run: |
-          rm -rf ./template/components
-          rm -rf ./template/lib
-          rm -rf ./template/loaders
-          rm -rf ./template/types
-          cp -rf ./source/components ./template/components
+          cd ./template
+          rm -rf !(.git)
           cp -rf ./source/lib ./template/lib
-          cp -rf ./source/loaders ./template/loaders
+          cp -rf ./source/sparks ./template/sparks
           cp -rf ./source/types ./template/types
           cp -f ./source/index.ts ./template/index.ts
           cp -f ./source/sparkbot.config.ts ./template/sparkbot.config.ts
@@ -50,7 +47,6 @@ jobs:
           cp -f ./source/README.md ./template/README.md
           cp -f ./source/LICENSE ./template/LICENSE
           cp -f ./source/tsconfig.json ./template/tsconfig.json
-          cp -f ./source/drizzle.config.ts ./template/drizzle.config.ts
       - name: Prepare package.json
         uses: jaywcjlove/github-action-package@main
         with:
@@ -64,7 +60,6 @@ jobs:
             {
               "devDependencies": {
                  "@types/bun": "latest",
-                 "drizzle-kit": "^0.22.7"
               }
             }
       - name: Push template
