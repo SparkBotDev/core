@@ -1,51 +1,50 @@
 {
-	"name": "sparkbot",
-	"version": "0.1.0",
-	"description": "A lightning-fast Discord bot framework with advanced features designed to make development effortless.",
-	"author": "Brian Lister <brian@sparkforge.dev (http://sparkforge.dev/)",
-	"license": "MIT",
-	"type": "module",
-	"scripts": {
-		"lint": "prettier . --check; xo; markdownlint-cli2 .; tsc --noEmit --skipLibCheck",
-		"commit": "lint-staged",
-		"prepare": "husky",
-		"coverage": "typescript-coverage-report",
-		"db-generate": "drizzle-kit generate"
-	},
-	"lint-staged": {
-		"*.ts": [
-			"prettier --write",
-			"xo"
-		],
-		"*.md": [
-			"prettier --write",
-			"markdownlint-cli2"
-		]
-	},
-	"dependencies": {
-		"@sparkbot/logger-console": "^0.3.0",
-		"@sparkbot/logger-plugin-interface": "^0.3.0",
-		"@sparkbot/secrets-environment": "^0.3.0",
-		"@sparkbot/secrets-plugin-interface": "^0.3.0",
-		"cron": "^3.1.7",
-		"discord.js": "^14.15.2",
-		"drizzle-orm": "^0.31.2",
-		"luxon": "^3.4.4",
-		"valibot": "^0.30.0"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^19.2.1",
-		"@commitlint/config-conventional": "^19.1.0",
-		"@types/bun": "latest",
-		"drizzle-kit": "^0.22.7",
-		"husky": "^9.0.11",
-		"lint-staged": "^15.2.2",
-		"markdownlint-cli2": "^0.13.0",
-		"prettier": "^3.2.5",
-		"typescript-coverage-report": "^1.0.0",
-		"xo": "^0.58.0"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	}
+  "name": "sparkbot",
+  "version": "0.2.0",
+  "description": "A lightning-fast Discord bot framework with advanced features designed to make development effortless.",
+  "author": "Brian Lister <brian@sparkforge.dev (http://sparkforge.dev/)",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "lint": "prettier . --check; xo; markdownlint-cli2 '**/*.md' '#node_modules'; tsc --noEmit --skipLibCheck",
+    "commit": "lint-staged",
+    "prepare": "husky",
+    "coverage": "typescript-coverage-report",
+    "db-generate": "drizzle-kit generate"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "xo"
+    ],
+    "*.md": [
+      "prettier --write",
+      "markdownlint-cli2"
+    ]
+  },
+  "dependencies": {
+    "@sparkbot/plugin-logger": "^0.1.0",
+    "@sparkbot/plugin-secrets": "^0.1.0",
+    "cron": "^3.1.7",
+    "discord.js": "^14.15.2",
+    "drizzle-orm": "^0.31.2",
+    "luxon": "^3.4.4",
+    "valibot": "^0.33.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@types/bun": "latest",
+    "drizzle-kit": "^0.22.7",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "markdownlint-cli2": "^0.13.0",
+    "prettier": "^3.2.5",
+    "type-coverage": "^2.29.0",
+    "typescript-coverage-report": "^1.0.0",
+    "xo": "^0.58.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.2"
+  }
 }
