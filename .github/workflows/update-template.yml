@@ -37,7 +37,7 @@ jobs:
       - name: Copy files to template
         run: |
           cd ./template
-          rm -rf !(.git)
+          rm -rf *
           cp -rf ./source/lib ./template/lib
           cp -rf ./source/sparks ./template/sparks
           cp -rf ./source/types ./template/types
