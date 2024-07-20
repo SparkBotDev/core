@@ -41,7 +41,6 @@
     "markdownlint-cli2": "^0.13.0",
     "prettier": "^3.2.5",
     "type-coverage": "^2.29.0",
-    "typescript-coverage-report": "^1.0.0",
     "xo": "^0.58.0"
   },
   "peerDependencies": {
