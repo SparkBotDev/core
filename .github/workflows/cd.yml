@@ -25,7 +25,6 @@ jobs:
           path: ./template
       - name: Copy files to template
         run: |
-          cd ./template
           rsync -a ./source/ ./template/ --exclude .git --delete
 
           rm -f ./template/.commitlintrc
