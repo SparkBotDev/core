@@ -29,6 +29,7 @@ jobs:
 
           rm -f ./template/.commitlintrc
           rm -f ./template/.cspell.json
+          rm -f ./template/.editorconfig
           rm -f ./template/.markdownlint-cli2.jsonc
           rm -f ./template/.prettierrc
           rm -f ./template/.xo-config
