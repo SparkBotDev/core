@@ -4,5 +4,5 @@
 		"MD013": { "line_length": 9999999999999 },
 		"MD033": false,
 	},
-	"ignores": ["**LICENSE"],
+	"ignores": ["LICENSE"],
 }

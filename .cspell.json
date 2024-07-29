@@ -1,6 +1,15 @@
 {
 	"version": "0.2",
 	"useGitignore": true,
-	"words": ["Spark⚡️Bot", "sparkbot", "SparkBot", "valibot", "cooldown", "cooldowns"],
+	"words": [
+		"commitlint",
+		"markdownlint",
+		"Spark⚡️Bot",
+		"sparkbot",
+		"SparkBot",
+		"valibot",
+		"cooldown",
+		"cooldowns"
+	],
 	"flagWords": []
 }

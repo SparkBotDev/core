@@ -1,3 +1,0 @@
-
-echo "========= commitlint ========="
-bun commitlint --edit $1

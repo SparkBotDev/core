@@ -10,10 +10,9 @@
 				"reveal": "always",
 				"revealProblems": "onProblem"
 			},
-			"runOptions": { "runOn": "folderOpen" },
 			"problemMatcher": [
 				{
-					"owner": "bun",
+					"owner": "xo",
 					"source": "xo",
 					"pattern": [
 						{
@@ -26,6 +25,18 @@
 							"column": 2,
 							"message": 3,
 							"loop": true
+						}
+					]
+				},
+				{
+					"owner": "markdown",
+					"source": "markdownlint",
+					"pattern": [
+						{
+							"regexp": "^(.+):(\\d+)(\\s.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
 						}
 					]
 				},

@@ -1,122 +1,125 @@
 {
 	"prettier": true,
-	"rules": {
-		"@typescript-eslint/consistent-type-definitions": "off",
-		"@typescript-eslint/method-signature-style": "error",
-		"@typescript-eslint/naming-convention": [
-			"error",
-			{
-				"selector": [
-					"variable",
-					"function",
-					"classProperty",
-					"objectLiteralProperty",
-					"parameterProperty",
-					"classMethod",
-					"objectLiteralMethod",
-					"typeMethod",
-					"accessor"
-				],
-				"format": [
-					"camelCase"
-				],
-				"leadingUnderscore": "allowSingleOrDouble",
-				"trailingUnderscore": "allow",
-				"filter": {
-					"regex": "[- ]",
-					"match": false
-				}
-			},
-			{
-				"selector": "typeLike",
-				"format": [
-					"PascalCase"
-				]
-			},
-			{
-				"selector": "variable",
-				"types": [
-					"boolean"
-				],
-				"format": [
-					"PascalCase"
-				],
-				"prefix": [
-					"is",
-					"has",
-					"can",
-					"should",
-					"will",
-					"did",
-					"does"
-				]
-			},
-			{
-				"selector": "interface",
-				"filter": "/^(?!I)[A-Z]/.source",
-				"format": [
-					"PascalCase"
-				]
-			},
-			{
-				"selector": "typeParameter",
-				"filter": "/^T$|^[A-Z][a-zA-Z]+$/.source",
-				"format": [
-					"PascalCase"
-				]
-			},
-			{
-				"selector": [
-					"classProperty",
-					"objectLiteralProperty"
-				],
-				"format": null,
-				"modifiers": [
-					"requiresQuotes"
-				]
-			}
-		],
-		"import/extensions": "off",
-		"n/file-extension-in-import": [
-			"error",
-			"always"
-		],
-		"unicorn/numeric-separators-style": "off",
-		"unicorn/catch-error-name": [
-			"error",
-			{
-				"name": "exception"
-			}
-		],
-		"unicorn/prevent-abbreviations": [
-			"error",
-			{
-				"allowList": {
-					"args": true,
-					"Args": true,
-					"env": true,
-					"Env": true
-				}
-			}
-		],
-		"@typescript-eslint/ban-types": [
-			"error",
-			{
-				"extendDefaults": true,
-				"types": {
-					"Buffer": {
-						"message": "Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer",
-						"suggest": [
-							"Uint8Array"
+	"overrides": [
+		{
+			"files": "**/*.ts",
+			"rules": {
+				"@typescript-eslint/consistent-type-definitions": "off",
+				"@typescript-eslint/method-signature-style": "error",
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"selector": [
+							"variable",
+							"function",
+							"classProperty",
+							"objectLiteralProperty",
+							"parameterProperty",
+							"classMethod",
+							"objectLiteralMethod",
+							"typeMethod",
+							"accessor"
+						],
+						"format": [
+							"camelCase"
+						],
+						"leadingUnderscore": "allowSingleOrDouble",
+						"trailingUnderscore": "allow",
+						"filter": {
+							"regex": "[- ]",
+							"match": false
+						}
+					},
+					{
+						"selector": "typeLike",
+						"format": [
+							"PascalCase"
 						]
 					},
-					"[]": "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
-					"[[]]": "Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
-					"[[[]]]": "Don't use `[[[]]]`. Use `SomeType[][][]` instead.",
-					"[[[[]]]]": "ur drunk 🤡",
-					"[[[[[]]]]]": "🦄💥"
-				}
+					{
+						"selector": "variable",
+						"types": [
+							"boolean"
+						],
+						"format": [
+							"PascalCase"
+						],
+						"prefix": [
+							"is",
+							"has",
+							"can",
+							"should",
+							"will",
+							"did",
+							"does"
+						]
+					},
+					{
+						"selector": "interface",
+						"filter": "/^(?!I)[A-Z]/.source",
+						"format": [
+							"PascalCase"
+						]
+					},
+					{
+						"selector": "typeParameter",
+						"filter": "/^T$|^[A-Z][a-zA-Z]+$/.source",
+						"format": [
+							"PascalCase"
+						]
+					},
+					{
+						"selector": [
+							"classProperty",
+							"objectLiteralProperty"
+						],
+						"format": null,
+						"modifiers": [
+							"requiresQuotes"
+						]
+					}
+				],
+				"import/extensions": "off",
+				"n/file-extension-in-import": "off",
+				"unicorn/numeric-separators-style": "off",
+				"unicorn/catch-error-name": [
+					"error",
+					{
+						"name": "exception"
+					}
+				],
+				"unicorn/prevent-abbreviations": [
+					"error",
+					{
+						"allowList": {
+							"args": true,
+							"Args": true,
+							"env": true,
+							"Env": true,
+							"docs": true
+						}
+					}
+				],
+				"@typescript-eslint/ban-types": [
+					"error",
+					{
+						"extendDefaults": true,
+						"types": {
+							"Buffer": {
+								"message": "Use Uint8Array instead. See: https://sindresorhus.com/blog/goodbye-nodejs-buffer",
+								"suggest": [
+									"Uint8Array"
+								]
+							},
+							"[]": "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
+							"[[]]": "Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
+							"[[[]]]": "Don't use `[[[]]]`. Use `SomeType[][][]` instead.",
+							"[[[[]]]]": "ur drunk 🤡",
+							"[[[[[]]]]]": "🦄💥"
+						}
+					}
+				]
 			}
-		]
-	}
+		}
+	]
 }
