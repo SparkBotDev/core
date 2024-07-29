@@ -1,0 +1,23 @@
+name: CI - Bun
+
+on:
+  workflow_call:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun prettier . --check
+      - run: bun xo
+      - run: bun markdownlint-cli2 '**/*.md' '#node_modules'
+      - run: tsc --noEmit --skipLibCheck
+      - run: bun test

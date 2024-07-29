@@ -1,0 +1,58 @@
+name: CD - Update Template Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci-bun.yml
+  deploy:
+    name: Update Template Repo
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source project
+        uses: actions/checkout@v4.1.4
+        with:
+          path: ./source
+      - name: Checkout template project
+        uses: actions/checkout@v4.1.4
+        with:
+          repository: SparkBotDev/SparkBot
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          path: ./template
+      - name: Copy files to template
+        run: |
+          cd ./template
+          rsync -a ./source/ ./template/ --exclude .git --delete
+
+          rm -f ./template/.commitlintrc
+          rm -f ./template/.cspell.json
+          rm -f ./template/.markdownlint-cli2.jsonc
+          rm -f ./template/.prettierrc
+          rm -f ./template/.xo-config
+          rm -f ./template/bun.lockb
+          rm -f ./template/bunfig.toml
+          rm -rf ./template/.vscode
+          rm -rf ./template/.github
+      - name: Prepare package.json
+        uses: jaywcjlove/github-action-package@main
+        with:
+          path: ./template/package.json
+          unset: scripts, devDependencies
+          data: |
+            {
+              "devDependencies": {
+                 "@types/bun": "latest"
+              }
+            }
+      - name: Push template
+        run: |
+          cd ./template
+          git add .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -am "${{ github.event.head_commit.message }}"
+          git push
