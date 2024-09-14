@@ -1,7 +1,6 @@
-import process from 'node:process';
 import { Client, Collection, Events, REST, Routes } from 'discord.js';
 import { getConfig, type Config } from './core/configuration';
-import { logErrorAndThrow } from './core/helpers';
+import { logException } from './core/helpers';
 import { Logger } from './core/logger';
 import { appConfig } from './.sparkbot.config';
 
@@ -19,17 +18,17 @@ let config: Config;
 try {
 	config = await getConfig(appConfig);
 } catch (exception) {
-	logErrorAndThrow(exception, logger);
-	process.exit(1);
+	throw logException(exception, logger);
 }
 
 // Initialize user-configured logger
 await logger.loadPlugin(config.loggingLibraryPlugin);
 
-// Initialize a new Discord.js client
+// Initialize Discord.js client
 declare module 'discord.js' {
 	interface Client {
 		config: Config;
+		logger: Logger;
 	}
 }
 
@@ -39,3 +38,12 @@ const discordClient = new Client({
 	presence: config.defaultPresence,
 });
 discordClient.config = config;
+discordClient.logger = logger;
+logger.registerClientHandlers(discordClient);
+
+// Login to Discord
+try {
+	await discordClient.login(config.discordAPIKey);
+} catch (exception) {
+	throw logException(exception, logger);
+}

@@ -9,7 +9,8 @@
 		"lint": "prettier . --write --log-level warn; xo; markdownlint-cli2 '**/*.md' '#node_modules'; tsc --noEmit --skipLibCheck"
 	},
 	"dependencies": {
-		"@sparkbot/plugin-logger": "^0.1.0",
+		"@hypercliq/shutdown-cleanup": "^6.0.4",
+		"@sparkbot/plugin-logger": "link:@sparkbot/plugin-logger",
 		"@sparkbot/plugin-secrets": "^0.1.0",
 		"cron": "^3.1.7",
 		"discord.js": "^14.15.3",

@@ -1,1 +1,1 @@
-export { logErrorAndThrow } from './error.ts';
+export { logException } from './error.ts';
