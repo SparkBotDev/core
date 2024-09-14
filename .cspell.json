@@ -9,7 +9,8 @@
 		"SparkBot",
 		"valibot",
 		"cooldown",
-		"cooldowns"
+		"cooldowns",
+		"pino"
 	],
 	"flagWords": []
 }

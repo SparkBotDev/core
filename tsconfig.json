@@ -27,8 +27,6 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"forceConsistentCasingInFileNames": true,
-
-		// Import aliases
-		"baseUrl": "./"
+		"useUnknownInCatchVariables": true
 	}
 }
