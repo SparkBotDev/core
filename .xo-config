@@ -7,6 +7,10 @@
 				"@typescript-eslint/consistent-type-definitions": "off",
 				"@typescript-eslint/method-signature-style": "error",
 				"@typescript-eslint/no-redeclare": "off",
+				"max-depth": [
+					"error",
+					5
+				],
 				"@typescript-eslint/naming-convention": [
 					"error",
 					{
@@ -28,7 +32,8 @@
 						"format": [
 							"camelCase"
 						],
-						"leadingUnderscore": "allow"
+						"leadingUnderscore": "allow",
+						"trailingUnderscore": "allow"
 					},
 					{
 						"selector": "typeLike",
