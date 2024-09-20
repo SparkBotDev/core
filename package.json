@@ -1,6 +1,6 @@
 {
-	"name": "sparkbot",
-	"version": "0.2.0",
+	"name": "@sparkbot/core",
+	"version": "0.4.0",
 	"description": "A lightning-fast Discord bot framework with advanced features designed to make development effortless.",
 	"author": "Brian Lister <brian@sparkforge.dev (http://sparkforge.dev/)",
 	"license": "MIT",
@@ -9,23 +9,24 @@
 		"lint": "prettier . --write --log-level warn; xo; markdownlint-cli2 '**/*.md' '#node_modules'; tsc --noEmit --skipLibCheck"
 	},
 	"dependencies": {
-		"@sparkbot/plugin-logger": "^0.1.0",
+		"@hypercliq/shutdown-cleanup": "^6.0.4",
+		"@sparkbot/plugin-logger": "^0.4.0",
 		"@sparkbot/plugin-secrets": "^0.1.0",
 		"cron": "^3.1.7",
-		"discord.js": "^14.15.2",
-		"luxon": "^3.4.4",
-		"valibot": "^0.33.0"
+		"discord.js": "^14.16.2",
+		"luxon": "^3.5.0",
+		"valibot": "^0.42.0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.2.1",
-		"@commitlint/config-conventional": "^19.1.0",
-		"@types/bun": "latest",
-		"markdownlint-cli2": "^0.13.0",
-		"prettier": "^3.2.5",
-		"type-coverage": "^2.29.0",
-		"xo": "^0.58.0"
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
+		"@types/bun": "^1.1.9",
+		"markdownlint-cli2": "^0.14.0",
+		"prettier": "^3.3.3",
+		"type-coverage": "^2.29.1",
+		"xo": "^0.59.3"
 	},
 	"peerDependencies": {
-		"typescript": "^5.5.4"
+		"typescript": "^5.6.2"
 	}
 }
