@@ -6,17 +6,7 @@ import type { Gate } from './gate.ts';
 
 const GateSchema = v.object({
 	id: v.string(),
-	check: v.pipe(
-		v.instance(Function),
-		v.transform((function_) => {
-			return (...args: unknown[]) => {
-				const parsedArgs = v.parse(v.string(), args);
-				const return_ = function_(parsedArgs); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
-				const parsedReturn = v.parse(v.boolean(), return_); // eslint-disable-line @typescript-eslint/naming-convention
-				return parsedReturn;
-			};
-		}),
-	),
+	check: v.function(),
 });
 export async function gateLoader() {
 	const importPath = join(import.meta.dir, '../../gates/');
@@ -39,7 +29,7 @@ export async function gateLoader() {
 				if (module && typeof module === 'object') {
 					for (const item of Object.values(module)) {
 						const validated = v.parse(GateSchema, item);
-						gates.set(validated.id, validated);
+						gates.set(validated.id, validated as Gate);
 					}
 				}
 			}

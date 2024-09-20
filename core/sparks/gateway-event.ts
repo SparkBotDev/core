@@ -4,7 +4,7 @@ import { Spark } from './spark.ts';
 export abstract class GatewayEventSpark<
 	Event extends keyof ClientEvents,
 > extends Spark {
-	abstract once?: boolean | false;
+	abstract once: boolean;
 	abstract eventType: Event;
 
 	register() {
